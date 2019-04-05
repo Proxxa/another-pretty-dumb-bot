@@ -24,5 +24,5 @@ exports.commands = [
 
 exports.description = {
     name: "Fun",
-    description: "Commands designed for entertainment. (Then there's ping.)"
+    description: "Commands designed for entertainment."
 }
