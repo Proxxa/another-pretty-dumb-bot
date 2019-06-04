@@ -2,5 +2,3 @@
 node_modules
 .vscode
 .gitattributes
-.gitattributes
-.package-lock.json
