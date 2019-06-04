@@ -1,6 +1,6 @@
 exports.help = {
     name: "Reverse",
-    description: "Reverses any text put into it.",
+    description: "Responds with the \"reversed\" version of the input.",
     usage: "reverse <text>"
 }
 

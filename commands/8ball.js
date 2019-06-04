@@ -3,14 +3,17 @@ let replies = [
 "Yeah!",
 "Sure!",
 "Indubitably!",
+"Why not?",
 //No Replies
 "Aah, no.",
 "I'd say no.",
 "Research says not.",
+"Wouldn't suggest it.",
 //Heck Off Replies
 "I'll have to get back to you on that one...",
 "I'm not too sure...",
-"I'm tired, ask me tomorrow"
+"I'm tired, ask me tomorrow",
+"You pick."
 ];
 
 exports.run = (client, message, args, command) => {

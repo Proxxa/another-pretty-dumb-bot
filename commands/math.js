@@ -7,7 +7,7 @@ exports.config = {
 exports.help = {
     name: "Math",
     description: "Performs basic arithmetic operations",
-    usage: "math <number> < + | - | * | / > <number>"
+    usage: "math <number> < +,  -,  *, / > <number>"
 }
 
 

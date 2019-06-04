@@ -1,6 +1,6 @@
 exports.help = {
   name: "Cat",
-  description: "Gives you a picture of a random cat. (VERY SLOW)",
+  description: "Gives you a picture of a random cat. (May take some time)",
   usage: "Cat"
 }
 
