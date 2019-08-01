@@ -2,7 +2,7 @@ require('dotenv').config();
 require('chalk');
 require('moment');
 const { Client } = require('discord.js');
-const client = new Client({ messageCacheMaxSize: 1500, sync: true });
+const client = new Client({ messageCacheMaxSize: 1500 });
 const settings = process.env;
 client.config = settings;
 client.prefix = client.config.PREFIX;
