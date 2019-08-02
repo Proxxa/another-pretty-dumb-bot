@@ -16,7 +16,7 @@ exports.run = (client, message, args, command) => {
     args.shift();
     let reason = args.join(" ");
     console.log(reason);
-    if (banner.hasPermission("KICK_MEMBERS")) {
+    if (banner.hasPermission("BAN_MEMBERS")) {
         message.channel.send("Banning " + toBan.user.tag + " for the reason: "+ reason);
         toBan.ban(reason);
     } else {
