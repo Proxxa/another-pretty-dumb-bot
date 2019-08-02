@@ -10,10 +10,6 @@ exports.commands = [
   {
     name: "Ban",
     description: "Bans the specified user."
-  },
-  {
-    name: "Tempban",
-    description: "Bans the specified user for a specified amount of days"
   }
 ]
 
