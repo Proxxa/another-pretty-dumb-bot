@@ -6,6 +6,10 @@ exports.commands = [
   {
     name: "Kick",
     description: "Kicks the requested user."
+  },
+  {
+    name: "Ban",
+    description: "Bans the requested user."
   }
 ]
 
