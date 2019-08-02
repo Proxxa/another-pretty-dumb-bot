@@ -14,10 +14,6 @@ exports.commands = [
     {
       name: "8ball",
       description: "Answers Yes/No questions."
-    },
-    {
-      name: "Cat",
-      description: "Gives you a random cat."
     }
 ]
 
