@@ -1,5 +1,5 @@
 {
-  "name": "discordbot",
+  "name": "another-pretty-dumb-bot",
   "version": "0.1.0",
   "description": "",
   "main": "app.js",
@@ -9,7 +9,6 @@
   "author": "Proxxa",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.2",
     "discord.js": "^11.4.2",
     "dotenv": "^7.0.0",
     "moment": "^2.24.0",
