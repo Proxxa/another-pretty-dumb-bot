@@ -1,5 +1,4 @@
 require('dotenv').config();
-require('chalk');
 require('moment');
 const { Client } = require('discord.js');
 const client = new Client({ messageCacheMaxSize: 3000 });
