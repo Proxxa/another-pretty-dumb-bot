@@ -16,6 +16,7 @@ module.exports = message => {
             message.channel.send(`Sorry, the command \`${command}\` does not exist.`)
         } else {
             try {
+                ++client.commandsRegistered
                 let cmdFile = require(`../commands/${command}`)
                 if (cmdFile.config.ownerOnly && message.author.id !== client.config.ownerID) return message.channel.send("You are not the bot owner!");
                 if (cmdFile.config.argsRequired && !args[0]) {
