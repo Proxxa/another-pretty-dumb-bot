@@ -11,14 +11,14 @@ client.commandsRegistered = 0;
 
 require('./util/eventLoader.js')(client);
 
-client.possiblePresences = [{ name: `Prefix "${client.prefix}"`, type: "PLAYING" }, { name: `${client.users.length} Users`, type: "WATCHING" }, { name: `${client.guilds.length} Servers`, type: "WATCHING" }, { name: `To ${client.commandsRegistered} Commands`, type: "LISTENING" }];
+client.possiblePresences = [{ name: `Prefix "${client.prefix}"`, type: "PLAYING" }, { name: `${client.users.length} Users`, type: "WATCHING" }, { name: `${client.guilds.length} Servers`, type: "WATCHING" }, { name: `${client.commandsRegistered} Commands`, type: "LISTENING" }];
 
 let currentPresence = -1;
 
 client.on("ready", () => {
   console.log(`Client online; ${client.user.tag}`);
   setInterval(function() {
-    client.possiblePresences[3].name = `To ${client.commandsRegistered} Commands`
+    client.possiblePresences[3].name = `${client.commandsRegistered} Commands`
     client.possiblePresences[1].name = `${client.users.array().length} Users`
     client.possiblePresences[2].name = `${client.guilds.array().length} Servers`
     ++currentPresence;
