@@ -5,18 +5,21 @@
 ## It's complaining about some discord.js package!!
   Alright, what you have to do is simple. Just follow the following instructions.
 
-`1. Open a command prompt.
+```
+1. Open a command prompt.
 
 2. Navigate to the bot's folder with the cd command.
 
 3. Run "npm i" or "npm install"
 
-4. Finished!`
+4. Finished!
+```
 
 ## It's complaining about some login token!!
   This means you don't have a `.env` file. The fix is simple.
 
-`1. Create a .env file
+```
+1. Create a .env file
 
 2. Put "PREFIX=" and then whatever you want your bot's prefix to be.
 
@@ -24,12 +27,14 @@
 
 4. Put "OWNERID=" and then your discord ID.
 
-5. All done!`
+5. All done!
+```
 
 ## What's my bot's token??
   The way to find your bot's token is simple, yet again.
 
-`1. Go to discordapp.com/developers
+```
+1. Go to discordapp.com/developers
 
 2. If you haven't already, make a bot with the following instructions.
 
@@ -55,13 +60,16 @@
 
 4. Under "Token," click "Copy."
 
-5. You now have your token copied onto your clipboard!`
+5. You now have your token copied onto your clipboard!
+```
 
 ## What's my discord ID??
   Right click your name in discord. If it doesn't say "Copy ID," follow these instructions:
 
-`1. Go to options
+```
+1. Go to options
 
 2. Appearance
 
-3. Turn on "Developer Mode"`
+3. Turn on "Developer Mode"
+```
