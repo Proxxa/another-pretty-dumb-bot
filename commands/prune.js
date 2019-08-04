@@ -1,5 +1,5 @@
 exports.config = {
-  ownerOnly: true,
+  ownerOnly: false,
   argsRequired: true
 }
 
