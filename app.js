@@ -21,7 +21,7 @@ const sequelize = new Sequelize('database', 'user', 'password', {
 	host: process.env.DATABASE,
 	dialect: 'sqlite',
 	logging: false,
-	operatorsAliases: "false",
+	operatorsAliases: false,
 	storage: 'database.sqlite',
 });
 
@@ -52,7 +52,7 @@ client.once("ready", () => {
     client.user.setPresence({ game: client.possiblePresences[currentPresence] }).catch(console.error);
   }, 10000);
   client.user.setPresence({ game: { name: "Hello, World!", type: "PLAYING" } });
-  client.Tags.sync();
+  Tags.sync();
 });
 
 client.login(client.token);

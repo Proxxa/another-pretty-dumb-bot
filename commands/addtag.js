@@ -20,7 +20,7 @@ exports.run = async (client, message, args, command) => {
       description: tagDesc,
       username: message.author.username,
     });
-    client.Tags.sync()
+
     return message.reply(`Tag ${tag.name} added.`);
   
   } catch (e) {
