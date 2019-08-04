@@ -22,6 +22,7 @@ const sequelize = new Sequelize('database', 'user', 'password', {
 	dialect: 'sqlite',
 	logging: false,
 	operatorsAliases: false,
+	// SQLite only
 	storage: 'database.sqlite',
 });
 
