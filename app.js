@@ -4,6 +4,7 @@ require('moment');
 const { Client } = require('discord.js');
 const client = new Client({ messageCacheMaxSize: 3000 });
 const settings = process.env;
+const Sequelize = require('sequelize');
 client.config = settings;
 client.prefix = client.config.PREFIX;
 client.token = client.config.TOKEN;
@@ -16,7 +17,32 @@ client.possiblePresences = [{ name: `Prefix "${client.prefix}"`, type: "PLAYING"
 
 let currentPresence = -1;
 
-client.on("ready", () => {
+const sequelize = new Sequelize('database', 'user', 'password', {
+	host: 'localhost',
+	dialect: 'sqlite',
+	logging: false,
+	operatorsAliases: false,
+	// SQLite only
+	storage: 'database.sqlite',
+});
+
+const Tags = sequelize.define('tags', {
+	name: {
+		type: Sequelize.STRING,
+		unique: true,
+	},
+	description: Sequelize.TEXT,
+	username: Sequelize.STRING,
+	usage_count: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0,
+		allowNull: false,
+	},
+});
+
+client.Tags = Tags;
+
+client.once("ready", () => {
   console.log(`Client online; ${client.user.tag}`);
   setInterval(function() {
     client.possiblePresences[3].name = `${client.commandsRegistered} Commands`
@@ -27,6 +53,7 @@ client.on("ready", () => {
     client.user.setPresence({ game: client.possiblePresences[currentPresence] }).catch(console.error);
   }, 10000);
   client.user.setPresence({ game: { name: "Hello, World!", type: "PLAYING" } });
+  Tags.sync();
 });
 
 client.login(client.token);
