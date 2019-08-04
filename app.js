@@ -18,7 +18,7 @@ client.possiblePresences = [{ name: `Prefix "${client.prefix}"`, type: "PLAYING"
 let currentPresence = -1;
 
 const sequelize = new Sequelize('database', 'user', 'password', {
-	host: 'localhost',
+	host: process.env.DATABASE,
 	dialect: 'sqlite',
 	logging: false,
 	operatorsAliases: false,
