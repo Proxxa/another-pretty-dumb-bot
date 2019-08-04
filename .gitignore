@@ -2,4 +2,3 @@
 node_modules
 .vscode
 .gitattributes
-*.sqlite
