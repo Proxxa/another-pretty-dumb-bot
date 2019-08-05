@@ -1,5 +1,5 @@
 exports.run = (client, message, args, command) => {
-  message.delete(0);
+  if (message.channel.type !== "dm") message.delete(0);
   delete require.cache[require.resolve(`./${args[0]}`)]
   message.channel.send(`Command **${args[0]}** reloaded.`).then(msg => msg.delete(3000));
 }
