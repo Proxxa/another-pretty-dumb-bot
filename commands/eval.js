@@ -22,10 +22,16 @@ function clean(text) {
 
 exports.run = async (client, message, args, command) => {
     try {
-        const code = args.join(" ");
+        const code = clean(args.join(" "));
+        if (code.includes("client.config")) throw "'Cannot reveal client token!'";
+        if (code.includes("process.env.TOKEN")) throw "'Cannot reveal client token!'"
+        if (code.includes("process")) throw "'Cannot affect node process!'";
+        console.log("Running " + code);
         let evaled = eval(code);
 
         if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
+
+        evaled = evaled.replace(client.config.TOKEN, "[REDACTED]");
 
         if (evaled.length >= 1980) {
           console.log(evaled);
