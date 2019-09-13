@@ -25,7 +25,7 @@ client.on("ready", () => {
     ++currentPresence;
     if (currentPresence >= client.possiblePresences.length) currentPresence = 0;
     client.user.setPresence({ game: client.possiblePresences[currentPresence] }).catch(console.error);
-  }, 10000);
+  }, 25000);
   client.user.setPresence({ game: { name: "Hello, World!", type: "PLAYING" } });
 });
 
