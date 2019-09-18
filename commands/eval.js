@@ -33,13 +33,13 @@ exports.run = async (client, message, args, command) => {
 
         evaled = evaled.replace(client.config.TOKEN, "[REDACTED]");
         evaled = clean(evaled);
-        let reply = evaled;
+        let reply = `\`\`\`js\nevaled\n\`\`\``;
         if (evaled.length >= 1980) {
           console.log(evaled);
           const buf = new Buffer(clean(evaled));
           reply = new Attachment(buf, "Output");
         }
-        message.channel.send(reply, {code:"js"});
+        message.channel.send(reply);
     } catch (err) {
         message.channel.send(`\`\`\`js\n${clean(err)}\`\`\``);
     }
