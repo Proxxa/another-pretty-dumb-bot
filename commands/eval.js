@@ -35,9 +35,13 @@ exports.run = async (client, message, args, command) => {
 
         if (evaled.length >= 1980) {
           console.log(evaled);
-          return message.channel.send("Message length greater than 2000 characters. Check console.");
+          let split = evaled.match(/.{1,1900}/g);
+          split.forEach(msg => {message.channel.send(`````\n${clean(msg)}\n\`\`\``)}).then(() => {
+            let skipSending = 1;
+          });
         }
 
+        if (skipSending !== 0) return;
         message.channel.send(clean(evaled), {code:"js"});
     } catch (err) {
         message.channel.send(`\`\`\`js\n${clean(err)}\`\`\``);
