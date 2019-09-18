@@ -33,7 +33,7 @@ exports.run = async (client, message, args, command) => {
 
         evaled = evaled.replace(client.config.TOKEN, "[REDACTED]");
         evaled = clean(evaled);
-        let reply = `\`\`\`js\nevaled\n\`\`\``;
+        let reply = `\`\`\`js\n${clean(evaled)}\n\`\`\``;
         if (evaled.length >= 1980) {
           console.log(evaled);
           const buf = new Buffer(clean(evaled));
