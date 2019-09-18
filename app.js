@@ -4,11 +4,14 @@ require('moment');
 const { Client } = require('discord.js');
 const client = new Client({ messageCacheMaxSize: 3000 });
 const settings = process.env;
+const DBL = require("dblapi.js");
 client.config = settings;
 client.prefix = client.config.PREFIX;
 client.token = client.config.TOKEN;
+client.dblToken = client.config.DBL_TOKEN;
 client.logger = require('./util/logger.js');
 client.commandsRegistered = 0;
+const dbl = new DBL(client.dblToken, client);
 
 require('./util/eventLoader.js')(client);
 
