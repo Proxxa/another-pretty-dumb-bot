@@ -36,12 +36,11 @@ exports.run = async (client, message, args, command) => {
         if (evaled.length >= 1980) {
           console.log(evaled);
           let split = evaled.match(/.{1,1900}/g);
-          split.forEach(msg => {message.channel.send(`````\n${clean(msg)}\n\`\`\``)}).then(() => {
-            let skipSending = 1;
-          });
+          await split.forEach(msg => {message.channel.send(`````\n${clean(msg)}\n\`\`\``)})
+          let skipSending = 1;
         }
 
-        if (skipSending !== 0) return;
+        if (skipSending !== 0) return "Sent in chunks";
         message.channel.send(clean(evaled), {code:"js"});
     } catch (err) {
         message.channel.send(`\`\`\`js\n${clean(err)}\`\`\``);
