@@ -37,7 +37,7 @@ exports.run = async (client, message, args, command) => {
         if (evaled.length >= 1980) {
           console.log(evaled);
           const buf = new Buffer(clean(evaled));
-          reply = new Attachment(buf, "Output");
+          reply = new Attachment(buf, "Output.txt");
         }
         message.channel.send(reply);
     } catch (err) {
