@@ -19,7 +19,7 @@ function clean(text) {
     }
   }
 
-
+const { Attachment } = require('discord.js');
 exports.run = async (client, message, args, command) => {
     try {
         const code = clean(args.join(" "));
@@ -32,16 +32,14 @@ exports.run = async (client, message, args, command) => {
         if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
 
         evaled = evaled.replace(client.config.TOKEN, "[REDACTED]");
-
+        evaled = clean(evaled);
+        let reply = evaled;
         if (evaled.length >= 1980) {
           console.log(evaled);
-          let split = evaled.match(/.{1,1900}/g);
-          await split.forEach(msg => {message.channel.send(`````\n${clean(msg)}\n\`\`\``)})
-          let skipSending = 1;
+          const buf = new Buffer(clean(evaled));
+          reply = new Attachment(buf, "Output");
         }
-
-        if (skipSending !== 0) return "Sent in chunks";
-        message.channel.send(clean(evaled), {code:"js"});
+        message.channel.send(reply, {code:"js"});
     } catch (err) {
         message.channel.send(`\`\`\`js\n${clean(err)}\`\`\``);
     }
