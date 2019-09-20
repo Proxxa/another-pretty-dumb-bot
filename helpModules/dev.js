@@ -12,5 +12,5 @@ exports.commands = [
 
 exports.description = {
     name: "Dev",
-    description: "Commands for the bot owner."
+    description: "For the bot owner."
 }

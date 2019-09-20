@@ -15,5 +15,5 @@ exports.commands = [
 
 exports.description = {
   name: "Moderator",
-  description: "Commands for server moderators,for moderation needs."
+  description: "For moderators"
 }

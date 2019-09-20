@@ -24,5 +24,5 @@ exports.commands = [
 
 exports.description = {
     name: "Helpful",
-    description: "Commands that might be useful..."
+    description: "Helpful commands."
 }
