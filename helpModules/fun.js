@@ -14,6 +14,10 @@ exports.commands = [
     {
       name: "8ball",
       description: "Answers Yes/No questions."
+    },
+    {
+      name: "Random",
+      description: "Gets a truly random number"
     }
 ]
 
