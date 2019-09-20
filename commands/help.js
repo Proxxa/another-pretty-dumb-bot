@@ -56,7 +56,7 @@ exports.run = (client, message, args, command) => {
                     .setTimestamp();
                 moreFiles.forEach(file => {
                     let fileDesc = require('../helpModules/' + file).description
-                    msg.addField(fileDesc.name, `\`${fileDesc.description}\``, true)
+                    msg.addField(fileDesc.name, `\`\`\`${fileDesc.description}\`\`\``, true)
                 });
                 message.channel.send(msg)
             })
