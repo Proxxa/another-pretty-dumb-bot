@@ -18,6 +18,10 @@ exports.commands = [
     {
       name: "Random",
       description: "Gets a truly random number"
+    },
+    {
+      name: "Roll",
+      description: "A D&D Dice rolling command."
     }
 ]
 
