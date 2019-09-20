@@ -28,6 +28,8 @@
 4. Put "OWNERID=" and then your discord ID.
 
 5. All done!
+
+p.s. This .env is not complete, but everything else is for the main version of the bot. Ignore anything about a "dblapi.js"
 ```
 
 ## What's my bot's token??
