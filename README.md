@@ -2,8 +2,8 @@
 
   So, you want to copy this bot and make some tweaks of your own? Thanks, please, fork it and then share your tweaks in a pull request. The following crap is literally just troubleshooting if you forked the bot and it won't host. Enjoy.
 
-## It's complaining about some discord.js package!!
-  Alright, what you have to do is simple. Just follow the following instructions.
+## It's complaining about some npm package!!
+  Alright, this means you don't have all of the needed files on your computer. Do yourself a favor by following these instructions.
 
 ```
 1. Open a command prompt.
@@ -29,7 +29,8 @@
 
 5. All done!
 
-p.s. This .env is not complete, but everything else is for the main version of the bot. Ignore anything about a "dblapi.js"
+p.s. This .env is not complete, but everything else is for the main version of the bot. 
+  Ignore anything about a "dblapi.js"
 ```
 
 ## What's my bot's token??
