@@ -1,11 +1,11 @@
 exports.commands = [
     {
         name: "Eval",
-        description: "Evaluates the input text using eval()"
+        description: "Eval <Code>"
     },
     {
         name: "Reload",
-        description: "Deletes the cache of a command."
+        description: "Reload <Command>"
     }
 ]
 

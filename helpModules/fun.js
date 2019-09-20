@@ -1,19 +1,19 @@
 exports.commands = [
     {
         name: "Ping",
-        description: "A simple ping/pong command"
+        description: "Ping"
     },
     {
         name: "Reverse",
-        description: "Reverses the inputted text."
+        description: "Reverse <text>"
     }, 
     {
       name: "Idea",
-      description: "Gives you an idea."
+      description: "Idea"
     },
     {
       name: "8ball",
-      description: "Answers Yes/No questions."
+      description: "8ball <question>"
     },
     {
       name: "emojify",

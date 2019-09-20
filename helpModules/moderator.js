@@ -1,15 +1,15 @@
 exports.commands = [
   {
     name: "Prune",
-    description: "Deletes 1 - 100 messages"
+    description: "Prune <Number>"
   },
   {
     name: "Kick",
-    description: "Kicks the specified user."
+    description: "Kick <@Mention>"
   },
   {
     name: "Ban",
-    description: "Bans the specified user."
+    description: "Ban <@Mention>"
   }
 ]
 

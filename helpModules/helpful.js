@@ -1,23 +1,23 @@
 exports.commands = [
     {
         name: "Help",
-        description: "Displays commands that can be detected by the bot"
+        description: "Help [Category/Command]"
     },
     {
         name: "Math",
-        description: "Performs basic arithmetic operations"
+        description: "Math <Number> <+, -, /, or *> <Number>"
     },
     {
       name: "Avatar",
-      description: "Retrieves your or another user's avatar from the current guild."
+      description: "Avatar [@Mention]"
     },
     {
       name: "Random",
-      description: "Gets a truly random number"
+      description: "Random [Minimum] <Maximum>"
     },
     {
       name: "Roll",
-      description: "A D&D Dice rolling command."
+      description: "Roll <Times>d<Dice Maximum>"
     }
 ];
 
