@@ -16,7 +16,7 @@ exports.commands = [
       description: "8ball <question>"
     },
     {
-      name: "emojify",
+      name: "Emojify",
       description: "Emojify <text>"
     }
 ]
