@@ -10,8 +10,8 @@ exports.run = (client, message, args, command) => {
         } else if (dieArgs.length < 2) {
             return message.channel.send("Sorry, you need a number before and after the \"`d`\".");
         }
-        let times = JSON.parse(dieArgs[0]);
-        let max = JSON.parse(dieArgs[1]);
+        let times = Number(dieArgs[0]) || null;
+        let max = Number(dieArgs[1]) || null;
         if (typeof times !== typeof 1) {
             return message.channel.send(`Invalid Argument "${dieArgs[0]}"`);
         }
