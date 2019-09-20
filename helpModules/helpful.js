@@ -10,6 +10,14 @@ exports.commands = [
     {
       name: "Avatar",
       description: "Retrieves your or another user's avatar from the current guild."
+    },
+    {
+      name: "Random",
+      description: "Gets a truly random number"
+    },
+    {
+      name: "Roll",
+      description: "A D&D Dice rolling command."
     }
 ];
 
