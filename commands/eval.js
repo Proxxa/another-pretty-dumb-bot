@@ -21,10 +21,16 @@ function clean(text) {
   }
 
 const { Attachment } = require('discord.js');
+const blacklist = ['process.exit()', 'token'];
 exports.run = async (client, message, args, command) => {
     try {
         const code = clean(args.join(' '));
         console.log('Running ' + code);
+
+        blacklist.forEach(query => {
+          if (code.toLowerCase().includes(query)) throw `Blacklisted term, '${query}'`;
+        });
+
         let evaled = eval(code);
 
         if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
