@@ -9,6 +9,7 @@ module.exports = message => {
     const args = message.content.split(' ');
     const command = args.shift().slice(prefix.length).toLowerCase();
     if (!command) return;
+    message.channel.startTyping();
     client.logger.log(`New command received: ${prefix}${command} ${args.join(' ')} `);
     fs.readdir('./commands', (err, files) => {
         if (err) client.logger.error(err);
@@ -35,8 +36,7 @@ module.exports = message => {
                     return message.channel.send(msg);
                 }
                 if (cmdFile.helpModule) return message.channel.send(cmdFile.contents);
-                message.channel.startTyping();
-                cmdFile.run(client, message, args, command).then(() => message.channel.stopTyping(true));
+                cmdFile.run(client, message, args, command);
             }
  catch (err) {
                 client.logger.error(err.stack);
@@ -46,4 +46,5 @@ module.exports = message => {
 
         }
     });
+    message.channel.stopTyping(true);
 };

@@ -20,7 +20,7 @@ function clean(text) {
     }
   }
 
-const { Attachment } = require('discord.js');
+const { Attachment, RichEmbed } = require('discord.js');
 const blacklist = ['process.exit()', 'token'];
 exports.run = async (client, message, args, command) => {
     try {
@@ -31,7 +31,9 @@ exports.run = async (client, message, args, command) => {
           if (code.toLowerCase().includes(query)) throw `Blacklisted term, '${query}'`;
         });
 
-        let evaled = eval(code);
+        const startDate = new Date();
+        let evaled = await eval(code);
+        const timeTaken = startDate - new Date();
 
         if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
 
@@ -44,9 +46,23 @@ exports.run = async (client, message, args, command) => {
           const buf = new Buffer(clean(evaled));
           reply = new Attachment(buf, 'Output.txt');
         }
-        message.channel.send(reply);
+
+        const embed = new RichEmbed()
+          .setAuthor(`Evaluated by ${message.author.tag}`, message.author.avatarURL)
+          .addField(':inbox_tray: Input', '```js\n' + code + '\n```')
+          .addField(':outbox_tray: Output', '```js\n' + code + '\n```')
+          .setTimestamp()
+          .setFooter(`Took ${Math.round(timeTaken)}ms`)
+          .setColor('#00dd00');
+
+        message.channel.send(embed);
     }
  catch (err) {
-        message.channel.send(`\`\`\`js\n${clean(err)}\`\`\``);
+   const embed = new RichEmbed()
+    .setAuthor('Failed to Evaluate', message.author.avatarURL)
+    .addField(':outbox_tray: Error', `\`\`\`js\n${clean(err)}\`\`\``)
+    .setColor('#dd0000')
+    .setTimestamp();
+        message.channel.send(embed);
     }
 };
