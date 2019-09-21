@@ -35,10 +35,12 @@ module.exports = message => {
                     return message.channel.send(msg);
                 }
                 if (cmdFile.helpModule) return message.channel.send(cmdFile.contents);
-                cmdFile.run(client, message, args, command);
+                message.channel.startTyping();
+                cmdFile.run(client, message, args, command).then(() => message.channel.stopTyping(true));
             }
  catch (err) {
                 client.logger.error(err.stack);
+                message.channel.stopTyping(true);
                 message.channel.send('Encountered an error:\n```xl\n' + err + '\n```');
             }
 
