@@ -35,7 +35,8 @@ exports.run = async (client, message, args, command) => {
 
         if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
 
-        evaled = evaled.replace(client.config.TOKEN, '[REDACTED]');
+        evaled = evaled.replace(client.dblToken, '[REDACTED]');
+        evaled = evaled.replace(client.dblToken, '[REDACTED]');
         evaled = clean(evaled);
         let reply = `\`\`\`js\n${clean(evaled)}\n\`\`\``;
         if (evaled.length >= 1980) {
