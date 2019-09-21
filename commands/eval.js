@@ -33,7 +33,7 @@ exports.run = async (client, message, args, command) => {
 
         const startDate = new Date();
         let evaled = await eval(code);
-        const timeTaken = startDate - new Date();
+        const timeTaken = new Date() - startDate;
 
         if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
 
@@ -50,7 +50,7 @@ exports.run = async (client, message, args, command) => {
         const embed = new RichEmbed()
           .setAuthor(`Evaluated by ${message.author.tag}`, message.author.avatarURL)
           .addField(':inbox_tray: Input', '```js\n' + code + '\n```')
-          .addField(':outbox_tray: Output', '```js\n' + code + '\n```')
+          .addField(':outbox_tray: Output', '```js\n' + evaled + '\n```')
           .setTimestamp()
           .setFooter(`Took ${Math.round(timeTaken)}ms`)
           .setColor('#00dd00');
