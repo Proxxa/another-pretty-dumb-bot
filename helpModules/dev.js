@@ -1,16 +1,16 @@
 exports.commands = [
     {
-        name: "Eval",
-        description: "Evaluates the input text using eval()"
+        name: 'Eval',
+        description: 'Eval <Code>',
     },
     {
-        name: "Reload",
-        description: "Deletes the cache of a command."
-    }
-]
+        name: 'Reload',
+        description: 'Reload <Command>',
+    },
+];
 
 
 exports.description = {
-    name: "Dev",
-    description: "Commands for the bot owner."
-}
+    name: 'Dev',
+    description: 'For the bot owner.',
+};

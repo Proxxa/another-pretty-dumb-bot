@@ -1,17 +1,23 @@
 {
   "name": "another-pretty-dumb-bot",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "10.15.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Proxxa",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.4.2",
+    "dblapi.js": "^2.3.0",
     "discord.js": "^11.4.2",
     "dotenv": "^7.0.0",
     "moment": "^2.24.0",
-    "random.cat-meow": "^1.0.0"
+    "node-fetch": "^2.6.0",
+    "random": "^2.1.1"
   }
 }

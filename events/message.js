@@ -1,39 +1,50 @@
-const { RichEmbed } = require("discord.js")
-const fs = require('fs')
+const { RichEmbed } = require('discord.js');
+const fs = require('fs');
 module.exports = message => {
     const client = message.client;
     const prefix = client.prefix;
-    const main = require('../app.js')
+    const main = require('../app.js');
     if (!message.content.startsWith(prefix)) return;
     if (message.author.bot) return;
     const args = message.content.split(' ');
     const command = args.shift().slice(prefix.length).toLowerCase();
     if (!command) return;
-    client.logger.log(`New command received: ${prefix}${command} ${args.join(" ")} `);
+    message.channel.startTyping();
+    client.logger.log(`New command received: ${prefix}${command} ${args.join(' ')} `);
     fs.readdir('./commands', (err, files) => {
         if (err) client.logger.error(err);
         if (files.indexOf(command + '.js') < 0) {
-            message.channel.send(`Sorry, the command \`${command}\` does not exist.`)
-        } else {
+            message.delete();
+            message.channel.send(`Sorry, the command \`${command}\` does not exist.`).then(m => m.delete(7500));
+        }
+ else {
             try {
-                let cmdFile = require(`../commands/${command}`)
-                if (cmdFile.config.ownerOnly && message.author.id !== client.config.ownerID) return message.channel.send("You are not the bot owner!");
+                ++client.commandsRegistered;
+                const cmdFile = require(`../commands/${command}`);
+                if (cmdFile.config.ownerOnly && message.author.id !== client.config.ownerID) {
+                    message.delete();
+                    return message.channel.send('You are not the bot owner!').then(m => m.delete(7500));
+                }
                 if (cmdFile.config.argsRequired && !args[0]) {
+                    message.delete();
                     const msg = new RichEmbed()
                         .addField('Description', cmdFile.help.description)
                         .addField('Usage', `\`\`\`xl\n${cmdFile.help.usage}\n\`\`\``)
                         .setTimestamp()
                         .setAuthor(cmdFile.help.name, message.author.avatarURL)
-                        .setColor("#ff0000");
+                        .setColor('#ff0000');
                     return message.channel.send(msg);
                 }
-                if (cmdFile.helpModule) return message.channel.send(cmdFile.contents)
+                if (cmdFile.helpModule) return message.channel.send(cmdFile.contents);
                 cmdFile.run(client, message, args, command);
-            } catch (err) {
-                client.logger.error(err.stack);
-                message.channel.send("```xl\n" + err + "\n```")
             }
-        
+ catch (err) {
+                client.logger.error(err.stack);
+                message.channel.stopTyping(true);
+                message.channel.send('Encountered an error:\n```xl\n' + err + '\n```');
+            }
+
         }
     });
-}
+    message.channel.stopTyping(true);
+};

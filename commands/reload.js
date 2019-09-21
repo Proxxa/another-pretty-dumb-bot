@@ -1,15 +1,16 @@
 exports.run = (client, message, args, command) => {
-  delete require.cache[require.resolve(`./${args[0]}`)]
-  message.channel.send(`Command **${args[0]}** reloaded.`)
-}
+  if (message.channel.type !== 'dm') message.delete(0);
+  delete require.cache[require.resolve(`./${args[0]}`)];
+  message.channel.send(`Command **${args[0]}** reloaded.`).then(msg => msg.delete(3000));
+};
 
 exports.config = {
   ownerOnly: true,
-  argsRequired: true
-}
+  argsRequired: true,
+};
 
 exports.help = {
-  description: "Deletes the cache of a command's javascript file.",
-  usage: "Reload <command>",
-  name: "Reload"
-}
+  description: 'Deletes the cache of a command\'s javascript file.',
+  usage: 'Reload <command>',
+  name: 'Reload',
+};

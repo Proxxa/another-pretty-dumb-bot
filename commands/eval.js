@@ -1,39 +1,68 @@
 exports.config = {
     ownerOnly: true,
-    argsRequired: true
-}
+    argsRequired: true,
+};
 
 
 exports.help = {
-    name: "Eval",
-    description: "Evaluates the input text using eval()",
-    usage: "eval <javascript>"
-}
+    name: 'Eval',
+    description: 'Evaluates the input text using eval()',
+    usage: 'eval <javascript>',
+};
 
 
 function clean(text) {
-    if (typeof(text) === "string") {
-      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-    } else {
+    if (typeof (text) === 'string') {
+      return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+    }
+ else {
       return text;
     }
   }
 
-
+const { Attachment, RichEmbed } = require('discord.js');
+const blacklist = ['process.exit()', 'token'];
 exports.run = async (client, message, args, command) => {
     try {
-        const code = args.join(" ");
-        let evaled = eval(code);
+        const code = clean(args.join(' '));
+        console.log('Running ' + code);
 
-        if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
+        blacklist.forEach(query => {
+          if (code.toLowerCase().includes(query)) throw `Blacklisted term, '${query}'`;
+        });
 
+        const startDate = new Date();
+        let evaled = await eval(code);
+        const timeTaken = new Date() - startDate;
+
+        if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
+
+        evaled = evaled.replace(client.dblToken, '[REDACTED]');
+        evaled = evaled.replace(client.dblToken, '[REDACTED]');
+        evaled = clean(evaled);
+        let reply = `\`\`\`js\n${clean(evaled)}\n\`\`\``;
         if (evaled.length >= 1980) {
           console.log(evaled);
-          return message.channel.send("Message length greater than 2000 characters. Check console.");
+          const buf = new Buffer(clean(evaled));
+          reply = new Attachment(buf, 'Output.txt');
         }
 
-        message.channel.send(clean(evaled), {code:"js"});
-    } catch (err) {
-        message.channel.send(`\`\`\`js\n${clean(err)}\`\`\``);
+        const embed = new RichEmbed()
+          .setAuthor(`Evaluated by ${message.author.tag}`, message.author.avatarURL)
+          .addField(':inbox_tray: Input', '```js\n' + code + '\n```')
+          .addField(':outbox_tray: Output', '```js\n' + evaled + '\n```')
+          .setTimestamp()
+          .setFooter(`Took ${Math.round(timeTaken)}ms`)
+          .setColor('#00dd00');
+
+        message.channel.send(embed);
     }
-}
+ catch (err) {
+   const embed = new RichEmbed()
+    .setAuthor('Failed to Evaluate', message.author.avatarURL)
+    .addField(':outbox_tray: Error', `\`\`\`js\n${clean(err)}\`\`\``)
+    .setColor('#dd0000')
+    .setTimestamp();
+        message.channel.send(embed);
+    }
+};

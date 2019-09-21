@@ -1,20 +1,28 @@
 exports.commands = [
     {
-        name: "Help",
-        description: "Displays commands that can be detected by the bot"
+        name: 'Help',
+        description: 'Help [Category/Command]',
     },
     {
-        name: "Math",
-        description: "Performs basic arithmetic operations"
+        name: 'Math',
+        description: 'Math <Number> <+, -, /, or *> <Number>',
     },
     {
-      name: "Avatar",
-      description: "Retrieves your or another user's avatar from the current guild."
-    }
+      name: 'Avatar',
+      description: 'Avatar [@Mention]',
+    },
+    {
+      name: 'Random',
+      description: 'Random [Minimum] <Maximum>',
+    },
+    {
+      name: 'Roll',
+      description: 'Roll <Times>d<Dice Maximum>',
+    },
 ];
 
 
 exports.description = {
-    name: "Helpful",
-    description: "Commands that might be useful..."
-}
+    name: 'Helpful',
+    description: 'Helpful commands.',
+};

@@ -1,28 +1,32 @@
 exports.commands = [
     {
-        name: "Ping",
-        description: "A simple ping/pong command"
+        name: 'Ping',
+        description: 'Ping',
     },
     {
-        name: "Reverse",
-        description: "Reverses the inputted text."
-    }, 
-    {
-      name: "Idea",
-      description: "Gives you an idea."
+        name: 'Reverse',
+        description: 'Reverse <text>',
     },
     {
-      name: "8ball",
-      description: "Answers Yes/No questions."
+      name: 'Idea',
+      description: 'Idea',
     },
     {
-      name: "Cat",
-      description: "Gives you a random cat."
-    }
-]
+      name: '8ball',
+      description: '8ball <question>',
+    },
+    {
+      name: 'Emojify',
+      description: 'Emojify <text>',
+    },
+    {
+      name: 'Define',
+      description: 'Define <query>',
+    },
+];
 
 
 exports.description = {
-    name: "Fun",
-    description: "Commands designed for entertainment."
-}
+    name: 'Fun',
+    description: 'Funny, silly commands.',
+};
