@@ -21,14 +21,14 @@ function clean(text) {
   }
 
 const { Attachment, RichEmbed } = require('discord.js');
-const blacklist = ['process.exit()', 'token'];
+const blacklist = ['process.exit()', 'token', 'client.destroy()'];
 exports.run = async (client, message, args, command) => {
     try {
         const code = clean(args.join(' '));
         console.log('Running ' + code);
 
         blacklist.forEach(query => {
-          if (code.toLowerCase().includes(query)) throw `Blacklisted term, '${query}'`;
+          if (code.toLowerCase().includes(query.toLowerCase())) throw `Blacklisted term, '${query}'`;
         });
 
         const startDate = new Date();
