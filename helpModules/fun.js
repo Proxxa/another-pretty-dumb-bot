@@ -19,6 +19,10 @@ exports.commands = [
       name: 'Emojify',
       description: 'Emojify <text>',
     },
+    {
+      name: 'Define',
+      description: 'Define <query>',
+    },
 ];
 
 
