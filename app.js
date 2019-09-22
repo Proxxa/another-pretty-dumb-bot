@@ -2,7 +2,7 @@ require('dotenv').config();
 require('chalk');
 require('moment');
 const { Client } = require('discord.js');
-const client = new Client({ messageCacheMaxSize: 3000 });
+const client = new Client({ messageCacheMaxSize: 3000, sync: true });
 const settings = process.env;
 const DBL = require('dblapi.js');
 client.config = settings;
@@ -23,7 +23,7 @@ client.on('ready', () => {
   console.log(`Client online; ${client.user.tag}`);
   setInterval(function() {
     client.possiblePresences[3].name = `${client.commandsRegistered} Commands`;
-    client.possiblePresences[1].name = `${client.users.array().length} Users`;
+    client.possiblePresences[1].name = `${client.users.filter(u => !u.bot).array().length} Users`;
     client.possiblePresences[2].name = `${client.guilds.array().length} Servers`;
     ++currentPresence;
     if (currentPresence >= client.possiblePresences.length) currentPresence = 0;
