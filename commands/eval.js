@@ -45,6 +45,7 @@ exports.run = async (client, message, args, command) => {
           console.log(evaled);
           const buf = new Buffer(clean(evaled));
           reply = new Attachment(buf, 'Output.txt');
+          return message.channel.send(reply);
         }
 
         const embed = new RichEmbed()
