@@ -10,16 +10,13 @@ exports.run = (client, message, args, command) => {
         if (dieArgs.length > 2) {
             return message.channel.send('Sorry, dice names only have one "`d`" in them.').then(m => m.delete(7500));
         }
- else if (dieArgs.length < 2) {
-            return message.channel.send('Sorry, you need a number before and after the "`d`".').then(m => m.delete(7500));
-        }
-        const times = Number(dieArgs[0]) || null;
+        let times = Number(dieArgs[0]) || 1;
         const max = Number(dieArgs[1]) || null;
         if (typeof times !== typeof 1) {
-            return message.channel.send(`Invalid Argument "${dieArgs[0]}"`).then(m => m.delete(7500));
+            times = 1;
         }
         if (typeof max !== typeof 1) {
-            return message.channel.send(`Invalid Argument "${dieArgs[1]}"`).then(m => m.delete(7500));
+            return message.channel.send(`Invalid Argument "${dieArgs[1]}" (M)`).then(m => m.delete(7500));
         }
         let num = 0;
         const nums = [];
