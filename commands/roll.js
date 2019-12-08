@@ -27,7 +27,7 @@ exports.run = (client, message, args, command) => {
             nums.push(temp);
         }
         const textList = nums.join(' + ');
-        return message.channel.send(`${times}d${max} → ${textList} = ${num}`);
+        return message.reply(`${times}d${max} → (${textList}) = ${num}`);
     }
 };
 
