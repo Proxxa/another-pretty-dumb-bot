@@ -41,7 +41,7 @@ exports.run = async (client, message, args, command) => {
         evaled = evaled.replace(client.dblToken, '[REDACTED]');
         evaled = clean(evaled);
         let reply = `\`\`\`js\n${clean(evaled)}\n\`\`\``;
-        if (evaled.length >= 1980) {
+        if (evaled.length >= 1024) {
           console.log(evaled);
           const buf = new Buffer(clean(evaled));
           reply = new Attachment(buf, 'Output.txt');
