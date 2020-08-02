@@ -35,30 +35,29 @@ exports.run = async (client, message, args, command) => {
         exec(input, (err, stdout, stderr) => {
           if (err) throw err;
           output = stdout
-        }).then(()=> {
           const timeTaken = new Date() - startDate;
-        });
+          output = output.replace(client.token, [REDACTED]);
+          output = output.replace(client.dblToken, [REDACTED]);
+          output = clean(output);
         
-        output = output.replace(client.token, [REDACTED]);
-        output = output.replace(client.dblToken, [REDACTED]);
-        output = clean(output);
+          if (reply.length >= 1024) {
+            console.log(output);
+            const buf = new Buffer(clean(output));
+            reply = new Attachment(buf, 'Output.txt');
+            return message.channel.send(reply);
+          }
         
-        if (reply.length >= 1024) {
-          console.log(output);
-          const buf = new Buffer(clean(output));
-          reply = new Attachment(buf, 'Output.txt');
-          return message.channel.send(reply);
-        }
-        
-        const embed = new RichEmbed()
-          .setAuthor(`Run by ${message.author.tag}`, message.author.avatarURL)
-          .addField(':inbox_tray: Input', '```xl\n' + input + '\n```')
-          .addField(':outbox_tray: Output', '```xl\n' + output + '\n```')
-          .setTimestamp()
-          .setFooter(`Took ${Math.round(timeTaken)}ms`)
-          .setColor('#00dd00');
+          const embed = new RichEmbed()
+            .setAuthor(`Run by ${message.author.tag}`, message.author.avatarURL)
+            .addField(':inbox_tray: Input', '```xl\n' + input + '\n```')
+            .addField(':outbox_tray: Output', '```xl\n' + output + '\n```')
+            .setTimestamp()
+            .setFooter(`Took ${Math.round(timeTaken)}ms`)
+            .setColor('#00dd00');
          
-         message.channel.send(embed);
+          message.channel.send(embed);
+        });
+        // Nothing here since it's all done in the callback
     }
  catch (err) {
    const embed = new RichEmbed()
