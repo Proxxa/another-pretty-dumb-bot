@@ -21,7 +21,7 @@ module.exports = message => {
             try {
                 ++client.commandsRegistered;
                 const cmdFile = require(`../commands/${command}`);
-                if (cmdFile.config.ownerOnly && message.author.id !== client.config.ownerID) {
+                if (cmdFile.config.ownerOnly && message.author.id !== client.env.ownerID) {
                     message.delete();
                     return message.channel.send('You are not the bot owner!').then(m => m.delete(7500));
                 }
