@@ -21,7 +21,8 @@ function clean(text) {
   }
 
 const { Attachment, RichEmbed } = require('discord.js');
-const { exec } = require('child_process');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 const blacklistedCommands = ['rm', 'node', 'npm i']
 exports.run = async (client, message, args, command) => {
     try {
@@ -32,32 +33,31 @@ exports.run = async (client, message, args, command) => {
         let output = 'No output received?'
         
         const startDate = new Date();
-        exec(input, (err, stdout, stderr) => {
-          if (err) throw err;
-          output = stdout
-          const timeTaken = new Date() - startDate;
-          output = output.replace(client.token, [REDACTED]);
-          output = output.replace(client.dblToken, [REDACTED]);
-          output = clean(output);
+        const { err, stdout, stderr } = await exec(input);
+        const timeTaken = new Date() - startDate;
+        if (err) throw err;
+        if (stdout) output = stdout;
         
-          if (reply.length >= 1024) {
-            console.log(output);
-            const buf = new Buffer(clean(output));
-            reply = new Attachment(buf, 'Output.txt');
-            return message.channel.send(reply);
-          }
+        output = output.replace(client.token, '[REDACTED]');
+        output = output.replace(client.dblToken, '[REDACTED]');
+        output = clean(output);
         
-          const embed = new RichEmbed()
-            .setAuthor(`Run by ${message.author.tag}`, message.author.avatarURL)
-            .addField(':inbox_tray: Input', '```xl\n' + input + '\n```')
-            .addField(':outbox_tray: Output', '```xl\n' + output + '\n```')
-            .setTimestamp()
-            .setFooter(`Took ${Math.round(timeTaken)}ms`)
-            .setColor('#00dd00');
-         
-          message.channel.send(embed);
-        });
-        // Nothing here since it's all done in the callback
+        if (output.length >= 1024) {
+          console.log(output);
+          const buf = new Buffer(clean(output));
+          reply = new Attachment(buf, 'Output.txt');
+          return message.channel.send(reply);
+        }
+        
+        const embed = new RichEmbed()
+          .setAuthor(`Run by ${message.author.tag}`, message.author.avatarURL)
+          .addField(':inbox_tray: Input', '```js\n' + input + '\n```')
+          .addField(':outbox_tray: Output', '```js\n' + output + '\n```')
+          .setTimestamp()
+          .setFooter(`Took ${Math.round(timeTaken)}ms`)
+          .setColor('#00dd00');
+
+        message.channel.send(embed);
     }
  catch (err) {
    const embed = new RichEmbed()
