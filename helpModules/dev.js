@@ -7,6 +7,10 @@ exports.commands = [
         name: 'Reload',
         description: 'Reload <Command>',
     },
+    {
+        name: 'Bash',
+        description: 'Bash <Command>',
+    },
 ];
 
 
