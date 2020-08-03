@@ -1,9 +1,5 @@
 exports.commands = [
     {
-        name: 'Cat',
-        description: 'Cat',
-    },
-    {
         name: 'Dog',
         description: 'Dog',
     },
